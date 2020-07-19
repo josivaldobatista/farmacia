@@ -1,6 +1,7 @@
 package com.farmacia.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.farmacia.domains.Categoria;
 import com.farmacia.repositories.CategoriaRepository;
@@ -16,5 +17,10 @@ public class CategoriaService {
 
   public List<Categoria> findAll() {
       return repo.findAll();
+  }
+
+  public Categoria findById(Integer id) {
+    Optional<Categoria> obj = repo.findById(id);
+    return obj.orElse(null);
   }
 }

@@ -5,9 +5,11 @@ import java.util.List;
 import com.farmacia.domains.Categoria;
 import com.farmacia.services.CategoriaService;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +21,15 @@ public class CategoriaResource {
   private CategoriaService service;
 
   @GetMapping
-  private ResponseEntity<List<Categoria>> findAll() {
+  public ResponseEntity<List<Categoria>> findAll() {
     List<Categoria> obj = service.findAll();
     return ResponseEntity.ok().body(obj);
-  }  
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<Categoria> findById(@PathVariable Integer id) {
+    Categoria obj = service.findById(id);
+    return ResponseEntity.ok().body(obj);
+  }
+  
 }
