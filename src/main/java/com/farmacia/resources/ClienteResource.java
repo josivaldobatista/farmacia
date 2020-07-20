@@ -3,7 +3,7 @@ package com.farmacia.resources;
 import java.util.List;
 
 import com.farmacia.domains.Cliente;
-import com.farmacia.services.exceptions.ClienteService;
+import com.farmacia.services.ClienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

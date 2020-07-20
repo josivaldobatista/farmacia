@@ -1,10 +1,11 @@
-package com.farmacia.services.exceptions;
+package com.farmacia.services;
 
 import java.util.List;
 import java.util.Optional;
 
 import com.farmacia.domains.Cliente;
 import com.farmacia.repositories.ClienteRepository;
+import com.farmacia.services.exceptions.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

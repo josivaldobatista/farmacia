@@ -2,7 +2,9 @@ package com.farmacia.domains;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -25,8 +28,7 @@ public class Pedido implements Serializable {
 
   // Essa anotação é necessário para não dar erro de entidade transiente
   // quando for salvar o pedido e o pagamento dele.
-  @OneToOne(cascade = CascadeType.ALL,
-            mappedBy = "pedido")
+  @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
   private Pagamento pagamento;
 
   @ManyToOne
@@ -36,6 +38,9 @@ public class Pedido implements Serializable {
   @ManyToOne
   @JoinColumn(name = "endereco_de_entraga_id")
   private Endereco enderecoDeEntrega;
+
+  @OneToMany(mappedBy = "id.pedido")
+  private Set<ItemPedido> itens = new HashSet<>();
 
   public Pedido() {
   }
@@ -88,15 +93,23 @@ public class Pedido implements Serializable {
     this.enderecoDeEntrega = enderecoDeEntrega;
   }
 
+  public Set<ItemPedido> getItens() {
+    return this.itens;
+  }
+
+  public void setItens(Set<ItemPedido> itens) {
+    this.itens = itens;
+  }
+
   @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Pedido)) {
-            return false;
-        }
-        Pedido pedido = (Pedido) o;
-        return Objects.equals(id, pedido.id);
+  public boolean equals(Object o) {
+    if (o == this)
+      return true;
+    if (!(o instanceof Pedido)) {
+      return false;
+    }
+    Pedido pedido = (Pedido) o;
+    return Objects.equals(id, pedido.id);
   }
 
   @Override
