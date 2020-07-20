@@ -11,12 +11,12 @@ CREATE TABLE cliente
 
 INSERT INTO cliente (id, nome, email, cpf_ou_cnpj, tipo) VALUES (1, 'Maria Silva', 'maria@gmail.com', '36378912377', 1);
 
-CREATE TABLE public.telefone
+CREATE TABLE telefone
 (
   cliente_id integer NOT NULL,
   telefones character varying(255) COLLATE pg_catalog."default",
   CONSTRAINT telefone FOREIGN KEY (cliente_id)
-    REFERENCES public.cliente (id) MATCH SIMPLE
+    REFERENCES cliente (id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
 );

@@ -2,8 +2,8 @@ package com.farmacia.resources;
 
 import java.util.List;
 
-import com.farmacia.domains.Categoria;
-import com.farmacia.services.CategoriaService;
+import com.farmacia.domains.Cliente;
+import com.farmacia.services.exceptions.ClienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,22 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoriaResource {
+@RequestMapping("/clientes")
+public class ClienteResource {
 
   @Autowired
-  private CategoriaService service;
+  private ClienteService service;
 
   @GetMapping
-  public ResponseEntity<List<Categoria>> findAll() {
-    List<Categoria> list = service.findAll();
+  public ResponseEntity<List<Cliente>> findAll() {
+    List<Cliente> list = service.findAll();
     return ResponseEntity.ok().body(list);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Categoria> findById(@PathVariable Integer id) {
-    Categoria obj = service.findById(id);
+  public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
+    Cliente obj = service.findById(id);
     return ResponseEntity.ok().body(obj);
   }
-  
 }
