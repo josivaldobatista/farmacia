@@ -1,9 +1,8 @@
 
 CREATE TABLE estado
 (
-    id bigserial NOT NULL,
-    nome character varying(255) COLLATE pg_catalog. "default",
-    CONSTRAINT estado_pkey PRIMARY KEY (id)
+    id integer generated always as identity PRIMARY KEY,
+    nome character varying(255) COLLATE pg_catalog. "default"
   );
 
   INSERT INTO estado (nome) VALUES ('São Paulo');
@@ -14,10 +13,9 @@ CREATE TABLE estado
 
   CREATE TABLE cidade
   (
-    id bigserial NOT NULL,
+    id integer generated always as identity PRIMARY KEY,
     nome character varying(255) COLLATE pg_catalog. "default",
     estado_id integer,
-    CONSTRAINT cidade_pkey PRIMARY KEY (id),
     FOREIGN KEY (estado_id) REFERENCES estado (id) MATCH SIMPLE
   );
 

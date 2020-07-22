@@ -1,10 +1,9 @@
 
 CREATE TABLE produto
 (
-  id bigserial NOT NULL,
+  id integer generated always as identity PRIMARY KEY,
   nome character varying(255) COLLATE pg_catalog. "default",
-  preco double precision,
-  CONSTRAINT produto_pkey PRIMARY KEY (id)
+  preco double precision
 );
 
 INSERT INTO produto (nome, preco) VALUES ('Risedronato Sódico 150mg Genérico Althaia 1 Comprimido', 63.95);

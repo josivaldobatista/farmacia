@@ -1,9 +1,8 @@
 
 CREATE TABLE pagamento
 (
-    pedido_id integer NOT NULL,
+    pedido_id integer PRIMARY KEY,
     estado integer,
-    CONSTRAINT pagamento_pkey PRIMARY KEY (pedido_id),
     CONSTRAINT pagamento FOREIGN KEY (pedido_id)
         REFERENCES pedido (id) MATCH SIMPLE
         ON UPDATE NO ACTION

@@ -1,10 +1,9 @@
 
 CREATE TABLE categoria
 (
-    id bigserial NOT NULL,
-    nome character varying(255) COLLATE pg_catalog. "default",
-    CONSTRAINT categoria_pkey PRIMARY KEY (id)
-  );
+    id integer generated always as identity PRIMARY KEY,
+    nome character varying(255) COLLATE pg_catalog. "default"
+);
 
   INSERT INTO categoria (nome) VALUES ('Beleza e Higiene');
   INSERT INTO categoria (nome) VALUES ('Mamãe e Bebés');
