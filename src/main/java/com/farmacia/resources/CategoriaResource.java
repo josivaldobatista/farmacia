@@ -2,8 +2,10 @@ package com.farmacia.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.farmacia.domains.Categoria;
+import com.farmacia.dto.CategoriaDTO;
 import com.farmacia.services.CategoriaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,10 @@ public class CategoriaResource {
   private CategoriaService service;
 
   @GetMapping
-  public ResponseEntity<List<Categoria>> findAll() {
+  public ResponseEntity<List<CategoriaDTO>> findAll() {
     List<Categoria> list = service.findAll();
-    return ResponseEntity.ok().body(list);
+    List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+    return ResponseEntity.ok().body(listDto);
   }
 
   @GetMapping("/{id}")
